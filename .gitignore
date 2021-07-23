@@ -6,3 +6,5 @@ vyos-build/
 *.zip
 *.img
 *.iso
+
+.idea

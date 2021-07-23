@@ -14,10 +14,19 @@ cd vyos-build
 
 # Update kernel to current version
 jq " .kernel_flavor=\"v8-arm64-vyos\" | .architecture=\"arm64\"" data/defaults.json > data/defaults.json.tmp
+sed -i '/repo.saltstack.com/d' data/defaults.json.tmp
 mv data/defaults.json.tmp data/defaults.json
 
 # Disable syslinux
+sed -i "s/console=ttyS0,115200 console=tty0/console=ttyS0,115200 console=tty1/" scripts/live-build-config
 sed -i "s/--bootloader syslinux,grub-efi/--bootloader grub-efi/" scripts/live-build-config
+sed -i "s/--debian-installer none/--debian-installer false/" scripts/live-build-config
+sed -i "s/--include=apt-utils,ca-certificates,gnupg2/--include=apt-utils,ca-certificates,gnupg2,apt-transport-https,openssl/" scripts/live-build-config
+sed -i "s/--debian-installer none/--debian-installer false/" scripts/live-build-config
+sed -i '/--utc-time true/d' scripts/live-build-config
+
+# Update buster.pref
+sed -i "s/Pin-Priority: -10/Pin-Priority: 100/" data/live-build-config/archives/buster.pref.chroot
 
 # Remove openvmtools hooks that are not needed on arm
 rm -rf data/live-build-config/hooks/live/30-openvmtools-configs.chroot

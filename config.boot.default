@@ -1,3 +1,10 @@
+service {
+    ssh {
+        disable-host-validation
+        port 22
+    }
+}
+
 system {
     host-name VyPiOS
     login {
@@ -28,9 +35,6 @@ system {
             speed 115200
         }
     }
-    option {
-        performance throughput
-    }
     config-management {
         commit-revisions 100
     }
@@ -38,8 +42,5 @@ system {
 
 interfaces {
     loopback lo {
-    }
-    ethernet eth0 {
-        address dhcp
     }
 }
