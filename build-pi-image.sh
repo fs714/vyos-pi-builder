@@ -233,16 +233,16 @@ if sleep --verbose --interuptable 5 ; then
 fi
  
 menuentry "VyOS $version (Serial console)" {
-        linux /boot/${VERSION}/vmlinuz boot=live vyos-union=/boot/${VERSION} console=ttyAMA0,115200n8 earlycon=pl011,0xfe201000 noautologin
+        linux /boot/${VERSION}/vmlinuz boot=live vyos-union=/boot/${VERSION} console=ttyAMA0,115200n8 earlycon=pl011,0xfe201000 net.ifnames=0 biosdevname=0 noautologin
         initrd /boot/${VERSION}/initrd.img
 }
 menuentry "VyOS $version (Graphical console)" {
-        linux /boot/${VERSION}/vmlinuz boot=live vyos-union=/boot/${VERSION} noautologin
+        linux /boot/${VERSION}/vmlinuz boot=live vyos-union=/boot/${VERSION} net.ifnames=0 biosdevname=0 noautologin
         initrd /boot/${VERSION}/initrd.img
 }
  
 menuentry "Lost password change $version (Serial console)" {
-        linux /boot/${VERSION}/vmlinuz boot=live vyos-union=/boot/${VERSION} console=ttyAMA0,115200n8 init=/opt/vyatta/sbin/standalone_root_pw_reset
+        linux /boot/${VERSION}/vmlinuz boot=live vyos-union=/boot/${VERSION} console=ttyAMA0,115200n8 net.ifnames=0 biosdevname=0 init=/opt/vyatta/sbin/standalone_root_pw_reset
         initrd /boot/${VERSION}/initrd.img
 }
 EOF
