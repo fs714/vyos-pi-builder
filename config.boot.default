@@ -43,4 +43,7 @@ system {
 interfaces {
     loopback lo {
     }
+    ethernet eth0 {
+        address dhcp
+    }
 }
