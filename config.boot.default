@@ -1,3 +1,10 @@
+service {
+    ssh {
+        disable-host-validation
+        port 22
+    }
+}
+
 system {
     host-name VyPiOS
     login {
