@@ -5,7 +5,7 @@ fi
 set -e
 
 if [ ! -d "u-boot" ]; then
-    git clone git://git.denx.de/u-boot.git
+    git clone --depth=1 git://git.denx.de/u-boot.git
 else
     echo "Using existing u-boot repository"
     EXIST="yes"
