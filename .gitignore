@@ -6,3 +6,7 @@ vyos-build/
 *.zip
 *.img
 *.iso
+
+# JetBrains
+.idea
+

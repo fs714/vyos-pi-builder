@@ -12,6 +12,9 @@ done
 
 cd vyos-build
 
+# Update vyos-base.list
+grep -qxF 'firmware-brcm80211' data/live-build-config/package-lists/vyos-base.list.chroot || echo 'firmware-brcm80211' >> data/live-build-config/package-lists/vyos-base.list.chroot
+
 echo "Copy new default configuration to the vyos image"
 cp ${ROOTDIR}/config.boot.default data/live-build-config/includes.chroot/opt/vyatta/etc/config.boot.default
 
